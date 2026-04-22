@@ -439,7 +439,7 @@ pub fn draw(f: &mut Frame, app: &mut App, config: &Config) {
                     } else {
                         "Unsupported File".to_string()
                     }
-                } else if name.contains(".tar.") || name.ends_with(".zip") {
+                } else if name.contains(".tar.") || name.to_lowercase().ends_with(".zip") || name.to_lowercase().ends_with(".appimage") {
                     if let Some((cached_name, cached_text)) = &app.cached_preview {
                         if cached_name == name {
                             cached_text.clone()

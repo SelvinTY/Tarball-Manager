@@ -233,7 +233,7 @@ impl App {
                 let name = entry.file_name().to_string_lossy().to_string();
                 if entry.path().is_dir() {
                     self.fb_items.push(format!("{}/", name));
-                } else if name.contains(".tar.") {
+                } else if name.contains(".tar.") || name.to_lowercase().ends_with(".zip") || name.to_lowercase().ends_with(".appimage") {
                     self.fb_items.push(name);
                 } else if self.route == Route::IconBrowser {
                     if name.ends_with(".png") || name.ends_with(".svg") || name.ends_with(".ico") {
