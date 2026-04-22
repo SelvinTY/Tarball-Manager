@@ -2563,6 +2563,7 @@ dependencies = [
  "dialoguer",
  "directories",
  "ratatui",
+ "regex",
  "reqwest",
  "serde",
  "serde_json",
