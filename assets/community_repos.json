@@ -119,6 +119,22 @@
       "category": "Graphics",
       "requires_root": false,
       "description": "The free and open source 3D creation suite, supporting the entirety of the 3D pipeline."
+    },
+    {
+      "name": "Element",
+      "package_name": "element",
+      "url": "https://packages.element.io/desktop/install/linux/glibc-x86-64/index.html",
+      "category": "Internet",
+      "requires_root": false,
+      "description": "A secure messaging app that lets you communicate over the decentralized Matrix protocol network using encrypted chats, rooms, and calls.",
+    },
+    {
+      "name": "iMe",
+      "package_name": "iMe",
+      "url": "https://imem.app/desktop",
+      "category": "Internet",
+      "requires_root": false,
+      "description": "AI Messenger for Telegram - Intelligent DeFi & AI Platform Powered by Telegram API.",
     }
   ]
 }
