@@ -169,6 +169,7 @@ pub fn extract_and_scan(
 
     let file_name = tarball.file_name().unwrap_or_default().to_string_lossy();
     let is_zip = file_name.ends_with(".zip");
+    let is_appimage = file_name.to_lowercase().ends_with(".appimage");
     
     let raw_name_folder = target_folder_name.map(|s| s.to_string()).unwrap_or_else(|| {
         file_name
@@ -176,6 +177,8 @@ pub fn extract_and_scan(
             .replace(".tar.xz", "")
             .replace(".tar.bz2", "")
             .replace(".zip", "")
+            .replace(".AppImage", "")
+            .replace(".appimage", "")
     });
 
     let target = config.install_dir.join(&raw_name_folder);
@@ -185,6 +188,42 @@ pub fn extract_and_scan(
     }
 
     fs::create_dir_all(&target)?;
+
+    if is_appimage {
+        let dest_appimage = target.join(file_name.as_ref());
+        fs::copy(tarball, &dest_appimage)?;
+        let mut perms = fs::metadata(&dest_appimage)?.permissions();
+        use std::os::unix::fs::PermissionsExt;
+        perms.set_mode(perms.mode() | 0o111);
+        fs::set_permissions(&dest_appimage, perms)?;
+
+        let temp_dir = std::env::temp_dir().join(format!("tm_extract_{}", raw_name_folder));
+        if temp_dir.exists() { let _ = fs::remove_dir_all(&temp_dir); }
+        fs::create_dir_all(&temp_dir)?;
+
+        let _ = Command::new(&dest_appimage).current_dir(&temp_dir).arg("--appimage-extract").arg("*.png").output();
+        let _ = Command::new(&dest_appimage).current_dir(&temp_dir).arg("--appimage-extract").arg("*.svg").output();
+        let _ = Command::new(&dest_appimage).current_dir(&temp_dir).arg("--appimage-extract").arg("*.desktop").output();
+        let _ = Command::new(&dest_appimage).current_dir(&temp_dir).arg("--appimage-extract").arg(".DirIcon").output();
+
+        let squashfs_root = temp_dir.join("squashfs-root");
+        if squashfs_root.exists() {
+            if let Ok(entries) = fs::read_dir(&squashfs_root) {
+                for entry in entries.flatten() {
+                    let _ = fs::copy(entry.path(), target.join(entry.file_name()));
+                }
+            }
+            let dir_icon = squashfs_root.join(".DirIcon");
+            if dir_icon.exists() {
+                let _ = fs::copy(&dir_icon, target.join("icon.png"));
+            }
+        }
+        let _ = fs::remove_dir_all(&temp_dir);
+
+        let executables = vec![dest_appimage];
+        let desktop_files = find_bundled_desktop_files(&target, 1);
+        return Ok(Some((target, raw_name_folder, executables, desktop_files)));
+    }
     
     let success = if is_zip {
         Command::new("unzip")
