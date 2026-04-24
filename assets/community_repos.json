@@ -119,6 +119,14 @@
       "category": "Graphics",
       "requires_root": false,
       "description": "The free and open source 3D creation suite, supporting the entirety of the 3D pipeline."
+    },
+    {
+      "name": "Mullvad Browser",
+      "package_name": "mullvad-browser",
+      "url": "https://mullvad.net/en/download/browser/linux",
+      "category": "Internet",
+      "requires_root": false,
+      "description": "Mullvad Browser is a privacy-focused browser built by the Tor Project to minimize tracking and fingerprinting when used with a VPN."
     }
   ]
 }
