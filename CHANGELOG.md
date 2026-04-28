@@ -1,5 +1,50 @@
 [![Historial de cambios](https://img.shields.io/badge/Changelog-Español-blueviolet?logo=keepachangelog&logoColor=white)](https://github.com/ezequielgk/Tarball-Manager/blob/main/CHANGELOG_es.md)
 
+## [2.0.0] - 2026-04-26
+
+### New Identity: Kore Package Manager (kpm)
+- **Total Rebranding:** Tarball Manager (tm) is now **Kore Package Manager (kpm)**. All references across the binary, CLI commands, and graphical interface have been updated.
+- **System Paths:** Migrated system storage from `~/.local/share/tm/` to `~/.local/share/kpm/`.
+- **Error Handling:** Completely replaced the legacy `TmError` ecosystem with `KoreError` throughout the project.
+
+### Packaging & Distribution
+- **tar.gz Releases:** GitHub releases now package the application in `kpm-linux-x86_64.tar.gz`, including the `kpm` executable, `kore.ico` icon, and a pre-configured `kpm.desktop`.
+- **Installer & Auto-Update:** Upgraded `install.sh` and `kpm --update-bin` to download and automatically extract the new compressed format, immediately configuring desktop shortcuts system-wide.
+
+### Refactoring & Modularization
+- **core/install.rs Decoupling:** The +860-line monolith was cleanly shattered into the `src/core/install/` sub-module, establishing dedicated files for `.desktop` manipulation, extraction, operations, repository resolution, and updates.
+
+## [1.5.3] - 2026-04-26
+
+### Architecture & Refactoring
+
+  - **Modular Architecture:** Successfully divided the main 900+ line monolith file into specific, decoupled components: `core` (install/remove logic), `ui` (Ratatui), `cli` (Clap), and `config`.
+  - **Unique Identity (`package_name`):** The system now utilizes the JSON `package_name` field as the absolute identifier. This dictates the folder name in `~/.local/share/binaries/` and the symlink in `~/.local/bin/`, replacing long or nonsensical auto-generated names.
+  - **Community Purge:** Removed all fragile logic that automatically synchronized community repositories or used visible flags, strongly prioritizing binary stability and explicit user action.
+
+### Interactive Installation (TUI)
+
+  - **Explicit Flow:** The installer no longer attempts to "guess" what to download or execute. The process is now fully sequential and explicit.
+  - **Manual Tarball Selection:** Added a manual selection step when multiple compressed files exist in the latest release.
+  - **Silent Extraction:** Extraction processes (`tar`) now run cleanly in the background without polluting the TUI render.
+  - **Unified Asset Selector:** Implemented a consolidated list combining detected executables (`[BIN]`) and bundled `.desktop` files (`[DESK]`) after extraction.
+  - **Smart Desktop Parsing:** If a user selects a bundled `.desktop` file, the manager parses its `Exec=` field to automatically deduce the intended binary and accurately create the system symlink.
+
+### XDG System Integration
+
+  - **Dynamic Terminal Control:** Introduced a `"terminal": bool` field (default `false`) in repository JSON payloads, defining whether an app requires a terminal emulator to run.
+  - **`.desktop` Patching:** By default, all installed applications force `Terminal=false` (unless specified otherwise) to prevent empty console windows from spawning when launching from app menus.
+  - **Native `pkexec` Support:** If a package explicitly requires root permissions (`"requires_root": true`), the `.desktop` file automatically prepends `pkexec` to the execution command.
+
+### Community Ecosystem
+
+  - **Contribution Staging Area:** Created the `assets/contributions/` directory exclusively for contributors to submit multi-package JSON manifests.
+  - **Rust Agnosticism:** The core codebase remains completely agnostic to the staging directory. Maintainers manually review Pull Requests and "promote" approved packages directly to the official channels.
+  - **Official Consolidation:** Established `default_repos.json` and `community_repos.json` as the definitive, singular sources of truth synchronized by the binary.
+
+### Packages & Templates
+
+  - **JetBrains Toolbox:** Officially integrated support, guaranteeing its dynamic URL parsing and graphical execution operate perfectly under the new metadata model.
 ## [1.5.0] - 2026-04-21
 
 ### Features

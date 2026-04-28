@@ -1,3 +1,49 @@
+## [2.0.0] - 2026-04-26
+
+### Nueva Identidad: Kore Package Manager (kpm)
+- **Rebranding Total:** Tarball Manager (tm) ahora es **Kore Package Manager (kpm)**. Se renombraron todas las referencias en el binario, los comandos CLI y la interfaz gráfica.
+- **Rutas del Sistema:** Se migró el almacenamiento del sistema de `~/.local/share/tm/` a `~/.local/share/kpm/`.
+- **Manejo de Errores:** Se reemplazó el antiguo ecosistema de `TmError` por `KoreError` en todo el proyecto.
+
+### Empaquetado y Distribución
+- **Releases en tar.gz:** Los lanzamientos de GitHub ahora empaquetan la app en `kpm-linux-x86_64.tar.gz`, incluyendo el binario `kpm`, el ícono `kore.ico` y un `kpm.desktop` configurado.
+- **Instalador y Auto-Update:** Se actualizó `install.sh` y el comando `kpm --update-bin` para descargar y extraer automáticamente el nuevo formato comprimido, configurando los accesos directos de escritorio al vuelo.
+
+### Refactorización y Modularización
+- **Desacople de core/install.rs:** El monolito de +860 líneas se fragmentó limpiamente en el sub-módulo `src/core/install/`, creando archivos dedicados para la modificación de archivos `.desktop`, extracción, operaciones, resolución de repositorios y actualizaciones.
+
+## [1.5.3] - 2026-04-26
+
+### Arquitectura y Organización
+
+  - **Modularización del Proyecto:** Se planeó la división del archivo principal de 900+ líneas en componentes específicos: core (instalación/borrado), ui (Ratatui), cli (Clap) y config.
+  - **Identidad Única (`package_name`):** El sistema ahora utiliza el `package_name` del JSON como identificador absoluto. Esto define el nombre de la carpeta en `~/.local/share/binaries/` y el symlink en `~/.local/bin/`, eliminando nombres de archivos largos o absurdos.
+  - **Purga de Comunidad Automática:** Se eliminó toda lógica que sincronizaba repositorios de comunidad de forma automática o mediante flags visibles, priorizando la estabilidad del binario.
+
+### Sistema de Instalación Inteligente (TUI)
+
+  - **Eliminación de Predicciones:** El instalador ya no intenta "adivinar" qué descargar o qué ejecutar. Ahora es un proceso secuencial y explícito.
+  - **Selección de Tarball:** Paso manual para elegir el archivo comprimido si hay varios en el repositorio.
+  - **Extracción Silenciosa:** Los procesos de `tar` corren en segundo plano sin ensuciar la interfaz.
+  - **Selector Unificado de Archivos:** Se implementó una lista que mezcla ejecutables (`[BIN]`) y archivos `.desktop` existentes (`[DESK]`) encontrados tras la extracción.
+  - **Deducción de Binarios desde `.desktop`:** Si el usuario elige un archivo `.desktop` incluido en el tarball, `tm` parsea el campo `Exec=` para encontrar el binario original y crear el symlink automáticamente.
+
+### Integración con el Sistema (XDG)
+
+  - **Control de Terminal:** Se añadió el campo `"terminal": bool` en los JSON de los repositorios. Esto permite definir si una app debe abrirse con o sin terminal (por defecto false).
+  - **Parcheo de `.desktop`:** Toda aplicación instalada ahora fuerza `Terminal=false` (salvo que se indique lo contrario) para evitar que se abra una ventana de consola vacía al ejecutarla desde el menú de aplicaciones.
+  - **Soporte pkexec:** Si un paquete requiere root (`requires_root: true`), el archivo `.desktop` antepone `pkexec` al comando de ejecución de forma automática.
+
+### Ecosistema de Comunidad (Staging Area)
+
+  - **Bandeja de Entrada (Invisible):** Se creó el directorio `assets/contributions/` en GitHub. Este espacio es exclusivo para que colaboradores envíen archivos JSON (uno por usuario) con múltiples paquetes.
+  - **Aislamiento Total:** El código de Rust es agnóstico a esta carpeta. El mantenedor revisa los Pull Requests manualmente y "promociona" los paquetes aprobados a los repositorios oficiales.
+  - **Consolidación Oficial:** Se establecieron `default_repos.json` y `community_repos.json` como las únicas fuentes oficiales sincronizadas por el binario.
+
+### Nuevos Paquetes y Templates
+
+  - **JetBrains Toolbox:** Se integró el soporte para este tipo de herramientas, asegurando que su URL y su ejecución gráfica funcionen correctamente bajo el nuevo sistema de metadatos.
+
 ## [1.5.0] - 2026-04-21
 
 ### Características (Features)
