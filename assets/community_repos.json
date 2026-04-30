@@ -149,6 +149,18 @@
       ]
     },
     {
+      "name": "SpotiFlac",
+      "package_name": "spotiflac",
+      "url": "https://github.com/spotbye/SpotiFLAC",
+      "category": "Audio",
+      "requires_root": false,
+      "terminal": false,
+      "description": "Get Spotify tracks in true FLAC from Tidal, Qobuz & Amazon Music — no account required.",
+      "formats": [
+        "appimage"
+      ]
+    },
+    {
       "name": "Telegram",
       "package_name": "telegram",
       "url": "https://github.com/telegramdesktop/tdesktop",
