@@ -19,7 +19,7 @@
       "category": "Utility",
       "requires_root": false,
       "terminal": true,
-      "description": "A cat(1) clone with syntax highlighting and Git integration for the terminal.",
+      "description": "A cat clone with syntax highlighting and Git integration for the terminal.",
       "formats": [
         "tarball"
       ]
@@ -94,7 +94,8 @@
       "terminal": true,
       "description": "A post-modern modal text editor written in Rust with built-in LSP support.",
       "formats": [
-        "tarball"
+        "tarball",
+        "appimage"
       ]
     },
     {
@@ -141,7 +142,8 @@
       "terminal": true,
       "description": "Hyperextensible Vim-based text editor focused on extensibility and usability.",
       "formats": [
-        "tarball"
+        "tarball",
+        "appimage"
       ]
     },
     {
@@ -239,7 +241,8 @@
       "terminal": false,
       "description": "Free/Libre Open Source Software Binaries of VS Code. A code editor with a massive ecosystem of extensions.",
       "formats": [
-        "tarball"
+        "tarball",
+        "appimage"
       ]
     },
     {
@@ -275,7 +278,32 @@
       "terminal": false,
       "description": "A beautiful and fast web browser built on top of Firefox, focused on productivity and privacy.",
       "formats": [
+        "tarball",
+        "appimage"
+      ]
+    },
+    {
+      "name": "Balena Etcher",
+      "package_name": "etcher",
+      "url": "https://github.com/balena-io/etcher",
+      "category": "Utility, Development",
+      "requires_root": false,
+      "terminal": false,
+      "description": "Etcher is a powerful OS image flasher built with web technologies to ensure flashing an SDCard or USB drive is a pleasant and safe experience.",
+      "formats": [
         "tarball"
+      ]
+    },
+    {
+      "name": "Looksyk",
+      "package_name": "looksyk",
+      "url": "https://codeberg.org/SebastianRzk/Looksyk",
+      "category": "Development, Office",
+      "requires_root": false,
+      "terminal": false,
+      "description": "A markdown centric, fast and local personal knowledge platform",
+      "formats": [
+        "appimage"
       ]
     }
   ]
