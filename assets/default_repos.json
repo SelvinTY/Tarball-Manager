@@ -277,6 +277,18 @@
       "formats": [
         "tarball"
       ]
+    },
+    {
+      "name": "Godot",
+      "package_name": "godot",
+      "url": "https://github.com/godotengine/godot",
+      "category": "Development",
+      "requires_root": false,
+      "terminal": false,
+      "description": " Godot Engine – Multi-platform 2D and 3D game engine.",
+      "formats": [
+        "tarball"
+      ]
     }
   ]
 }
