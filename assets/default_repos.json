@@ -277,6 +277,43 @@
       "formats": [
         "tarball"
       ]
+    },
+    {
+      "name": "Keepassxc",
+      "package_name": "Keepassxc",
+      "url": "https://github.com/keepassxreboot/keepassxc",
+      "category": "Utility",
+      "requires_root": false,
+      "terminal": false,
+      "description": "KeePassXC is a modern, secure, and open-source password manager that stores and manages your most sensitive information. You can run KeePassXC on Windows, macOS, and Linux systems. KeePassXC is for people with extremely high demands of secure personal data management.",
+      "formats": [
+        "appimage"
+      ]
+    },
+    {
+      "name": "Lite XL",
+      "package_name": "lite-xl",
+      "url": "https://github.com/lite-xl/lite-xl",
+      "category": "Development",
+      "requires_root": false,
+      "terminal": false,
+      "description": "A lightweight text editor written in Lua, adapted from lite.",
+      "formats": [
+        "tarball",
+        "appimage"
+      ]
+    },
+    {
+      "name": "Lapce",
+      "package_name": "lapce",
+      "url": "https://github.com/lapce/lapce",
+      "category": "Development",
+      "requires_root": false,
+      "terminal": false,
+      "description": "Lightning-fast and Powerful Code Editor written in Rust.",
+      "formats": [
+        "tarball"
+      ]
     }
   ]
 }
