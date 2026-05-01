@@ -277,6 +277,18 @@
       "formats": [
         "tarball"
       ]
+    },
+    {
+      "name": "Zettlr",
+      "package_name": "zettlr",
+      "url": "https://github.com/Zettlr/Zettlr",
+      "category": "Office, Development",
+      "requires_root": false,
+      "terminal": false,
+      "description": "Zettlr brings simplicity back to your texts. Open-minded writing that adapts to your style. Fast information retrieval that finds what matters to you. Versatile exporting that enables you to adapt to whatever publication pipeline your employer or school uses.",
+      "formats": [
+        "appimage"
+      ]
     }
   ]
 }
