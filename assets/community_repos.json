@@ -40,7 +40,7 @@
       "name": "Heroic Games Launcher",
       "package_name": "heroic-games-launcher",
       "url": "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher",
-      "category": "Games",
+      "category": "Game",
       "requires_root": false,
       "terminal": false,
       "description": "An open-source game launcher for Epic Games, GOG, and Amazon Games on Linux.",
@@ -78,7 +78,7 @@
       "name": "Pinecone Launcher",
       "package_name": "pinecone-launcher",
       "url": "https://github.com/ElyPrismLauncher/Launcher",
-      "category": "Games",
+      "category": "Game",
       "requires_root": false,
       "terminal": false,
       "description": "A specialized fork of Prism Launcher optimized for specific community features and modpacks.",
@@ -91,7 +91,7 @@
       "name": "Prism Launcher",
       "package_name": "prism-launcher",
       "url": "https://github.com/PrismLauncher/PrismLauncher",
-      "category": "Games",
+      "category": "Game",
       "requires_root": false,
       "terminal": false,
       "description": "A custom Minecraft launcher that allows you to easily manage multiple installations and mods.",
@@ -116,7 +116,7 @@
       "name": "Red Eclipse",
       "package_name": "redeclipse",
       "url": "https://github.com/redeclipse/base",
-      "category": "Games",
+      "category": "Game",
       "requires_root": false,
       "terminal": false,
       "description": "An open-source sci-fi first-person shooter, forked from Cube 2: Sauerbraten.",
@@ -140,7 +140,7 @@
       "name": "SuperTuxKart",
       "package_name": "supertuxkart",
       "url": "https://github.com/supertuxkart/stk-code",
-      "category": "Games",
+      "category": "Game",
       "requires_root": false,
       "terminal": false,
       "description": "A 3D open-source arcade racer with a variety of characters, tracks, and modes.",
@@ -200,7 +200,7 @@
       "name": "Xonotic",
       "package_name": "xonotic",
       "url": "https://dl.xonotic.org/xonotic-0.8.6.zip",
-      "category": "Games",
+      "category": "Game",
       "requires_root": false,
       "terminal": false,
       "description": "A free and open-source first-person shooter forked from the Darkplaces Quake source-port.",
@@ -219,6 +219,18 @@
       "formats": [
         "appimage",
         "tarball"
+      ]
+    },
+    {
+      "name": "SuperTux",
+      "package_name": "supertux",
+      "url": "https://github.com/supertux/supertux",
+      "category": "Game",
+      "requires_root": false,
+      "terminal": false,
+      "description": "SuperTux is a jump'n'run game with strong inspiration from the Super Mario Bros. games for the various Nintendo platforms.",
+      "formats": [
+        "appimage"
       ]
     }
   ]
